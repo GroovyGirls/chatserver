@@ -14,7 +14,10 @@ class UserService {
     // TODO relativer Pfad
     public static final String path = './src/main/resource/users.json'
     HashMap<String, User> registeredUsers = new HashMap<>()
+    HashMap<String, String> onlineUsers = new  HashMap<>()
     JsonSlurper slurper = new JsonSlurper();
+
+
 
 // TODO BEAN darf es nur einmal geben
     UserService() {
@@ -39,5 +42,21 @@ class UserService {
             writer.write(JsonOutput.prettyPrint(json))
         }
         return true
+    }
+
+    def isUserAndPwdValid(String mail, String pwd, String ip) {
+
+        def user = registeredUsers.get(mail)
+        if (user != null){
+            if (user.password == pwd) {
+                addToOnlineUsers(user, ip)
+                true
+            }
+        }
+        false
+    }
+
+    def private addToOnlineUsers (User user, String ip){
+        onlineUsers.put(user.mail, ip)
     }
 }
