@@ -10,12 +10,15 @@ import java.nio.file.Paths
  * Created by vera on 31.05.16.
  */
 class UserService {
+
+    // TODO relativer Pfad
+    public static final String path = '/media/Daten/ideaProjects/chatserver/src/main/resource/users.json'
     HashMap<String, User> registeredUsers = new HashMap<>()
     JsonSlurper slurper = new JsonSlurper();
 
 // TODO BEAN darf es nur einmal geben
     UserService() {
-        Paths.get('/media/Daten/ideaProjects/messengerServer/resource/users.json').withReader { reader ->
+        Paths.get(path).withReader { reader ->
             def jsonList = slurper.parse(reader)
             for (u in jsonList) {
                 def user = u as User
@@ -32,7 +35,7 @@ class UserService {
 
         registeredUsers.put(user.mail, user)
         def json = JsonOutput.toJson(registeredUsers.values())
-        Paths.get('/media/Daten/ideaProjects/messengerServer/resource/users.json').withWriter { writer ->
+        Paths.get(path).withWriter { writer ->
             writer.write(JsonOutput.prettyPrint(json))
         }
         return true
