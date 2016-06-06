@@ -12,7 +12,7 @@ import java.nio.file.Paths
 class UserService {
 
     // TODO relativer Pfad
-    public static final String path = '/media/Daten/ideaProjects/chatserver/src/main/resource/users.json'
+    public static final String path = './src/main/resource/users.json'
     HashMap<String, User> registeredUsers = new HashMap<>()
     JsonSlurper slurper = new JsonSlurper();
 
