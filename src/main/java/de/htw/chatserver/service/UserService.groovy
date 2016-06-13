@@ -11,15 +11,12 @@ import java.nio.file.Paths
  */
 class UserService {
 
-    // TODO relativer Pfad
     public static final String path = './src/main/resource/users.json'
     HashMap<String, User> registeredUsers = new HashMap<>()
     HashMap<String, String> onlineUsers = new  HashMap<>()
     JsonSlurper slurper = new JsonSlurper();
 
-
-
-// TODO BEAN darf es nur einmal geben
+    // TODO BEAN darf es nur einmal geben
     UserService() {
         Paths.get(path).withReader { reader ->
             def jsonList = slurper.parse(reader)
