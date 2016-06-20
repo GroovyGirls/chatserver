@@ -30,8 +30,7 @@ class LoginController {
     def loginPost(User user) {
         println("start login mail: ${user.mail} und password: ${user.password}")
 
-        loginService = new UserService();
-        //TODO IP-ADresse auslesen
+        loginService = UserService.getInstance();
         String remoteAddr = request.getRemoteAddr()
 
         println(remoteAddr)

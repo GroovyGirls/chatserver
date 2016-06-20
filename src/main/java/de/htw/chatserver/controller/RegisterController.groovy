@@ -21,7 +21,7 @@ class RegisterController {
     @Consumes(MediaType.APPLICATION_JSON)
     def registerPost(User user) {
         println("start post")
-        UserService registerService = new UserService();
+        UserService registerService = UserService.getInstance();
         boolean validUser = registerService.register(user);
         //prüfen, ob mail schon vorhanden, dann ablehnen Antworten mit ErrorCode
         //sonst benutzer speichern (json-file)

@@ -1,0 +1,38 @@
+package de.htw.chatserver.controller
+
+import de.htw.chatserver.service.UserService
+
+import javax.ws.rs.POST
+import javax.ws.rs.Path
+import javax.ws.rs.core.Context
+import javax.ws.rs.core.Response
+import javax.ws.rs.ext.Provider
+
+/**
+ * @author vera on 20.06.16.
+ */
+@Path('logout')
+@Provider
+class LogoutController {
+
+
+    @Context
+    org.glassfish.grizzly.http.server.Request request
+
+    @POST
+    def logout() {
+        UserService userService = UserService.getInstance()
+        String remoteAddr = request.getRemoteAddr()
+        if (userService.logout(remoteAddr)) {
+            return Response
+                    .ok()
+                    .build()
+        } else {
+            return Response
+                    .status(Response.Status.NOT_FOUND)
+                    .build()
+        }
+
+
+    }
+}

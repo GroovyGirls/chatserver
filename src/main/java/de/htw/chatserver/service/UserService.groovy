@@ -10,6 +10,7 @@ import java.nio.file.Paths
  * Created by vera on 31.05.16.
  */
 class UserService {
+    private static final UserService userService = new UserService()
 
     public static final String path = './src/main/resource/users.json'
     HashMap<String, User> registeredUsers = new HashMap<>()
@@ -17,7 +18,7 @@ class UserService {
     JsonSlurper slurper = new JsonSlurper();
 
     // TODO BEAN darf es nur einmal geben
-    UserService() {
+    private UserService() {
         Paths.get(path).withReader { reader ->
             def jsonList = slurper.parse(reader)
             for (u in jsonList) {
@@ -26,6 +27,10 @@ class UserService {
             }
 
         }
+    }
+
+    public static UserService getInstance() {
+        return userService
     }
 
     def register(User user) {
@@ -45,15 +50,28 @@ class UserService {
 
         def user = registeredUsers.get(mail)
         if (user != null){
-            if (user.password == pwd) {
-                addToOnlineUsers(user, ip)
-                true
+            if (user.password.equals(pwd)) {
+                addToOnlineUsers(user.mail, ip)
+                return true
             }
         }
         false
     }
 
-    def private addToOnlineUsers (User user, String ip){
-        onlineUsers.put(user.mail, ip)
+    boolean logout(String ip) {
+        // TODO zwei user mit gleicher IP ???
+        try {
+            onlineUsers.remove(onlineUsers.find { it.value == ip }?.key)
+            true
+        }
+        catch (Exception e) {
+            false
+        }
     }
+
+    def private addToOnlineUsers(String mail, String ip) {
+        onlineUsers.put(mail, ip)
+    }
+
+
 }

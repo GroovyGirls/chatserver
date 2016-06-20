@@ -1,6 +1,7 @@
 package de.htw.chatserver
 
 import de.htw.chatserver.controller.LoginController
+import de.htw.chatserver.controller.LogoutController
 import de.htw.chatserver.controller.RegisterController
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory
 import org.glassfish.jersey.server.ResourceConfig
@@ -16,7 +17,7 @@ class Main {
 
         GrizzlyHttpServerFactory.createHttpServer(
                 "http://localhost:8081".toURI(),
-                new ResourceConfig(RegisterController.class, LoginController.class));
+                new ResourceConfig(RegisterController.class, LoginController.class, LogoutController.class));
 
         synchronized (this) {
             wait() // Hack damit der Server nicht wieder runtergefahren wird
