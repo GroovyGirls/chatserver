@@ -1,12 +1,17 @@
 [
-  {
-    "password": "123",
-    "mail": "mail2@mail.de",
-    "name": "Anna"
-  },
-  {
-    "password": "12345",
-    "mail": "Doe@mail.de",
-    "name": "John"
-  }
+    {
+        "password": "123",
+        "mail": "mail2@mail.de",
+        "name": "Anna"
+    },
+    {
+        "password": "12345",
+        "mail": "Doe@mail.de",
+        "name": "John"
+    },
+    {
+        "password": "123",
+        "mail": "blabla@mail.de",
+        "name": "Anna"
+    }
 ]
