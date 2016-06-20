@@ -3,7 +3,6 @@ package de.htw.chatserver.controller
 import de.htw.chatserver.persistence.User
 import de.htw.chatserver.service.UserService
 
-import javax.servlet.http.HttpServletRequest
 import javax.ws.rs.Consumes
 import javax.ws.rs.POST
 import javax.ws.rs.Path
@@ -23,7 +22,7 @@ class LoginController {
     UserService loginService;
 
     @Context
-    HttpServletRequest request
+    org.glassfish.grizzly.http.server.Request request
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -33,12 +32,8 @@ class LoginController {
 
         loginService = new UserService();
         //TODO IP-ADresse auslesen
-        String remoteAddr
-        if (request == null) {
-            remoteAddr = "dummyIp" // TODO dummy-Wert muss entfernt werden sobald ip ausgelesen werden kann
-        } else {
-            remoteAddr = request.getRemoteAddr()
-        }
+        String remoteAddr = request.getRemoteAddr()
+
         println(remoteAddr)
 
         boolean isValidLogin = loginService.isUserAndPwdValid(user.mail, user.password, remoteAddr)
