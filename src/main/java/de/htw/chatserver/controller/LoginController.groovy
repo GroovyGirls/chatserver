@@ -19,7 +19,7 @@ import javax.ws.rs.ext.Provider
 @Provider
 class LoginController {
 
-    UserService loginService;
+    UserService userService;
 
     @Context
     org.glassfish.grizzly.http.server.Request request
@@ -30,12 +30,12 @@ class LoginController {
     def loginPost(User user) {
         println("start login mail: ${user.mail} und password: ${user.password}")
 
-        loginService = UserService.getInstance();
+        userService = UserService.getInstance();
         String remoteAddr = request.getRemoteAddr()
 
         println(remoteAddr)
 
-        boolean isValidLogin = loginService.isUserAndPwdValid(user.mail, user.password, remoteAddr)
+        boolean isValidLogin = userService.isUserAndPwdValid(user.mail, user.password, remoteAddr)
 
         if (isValidLogin) {
             return Response
