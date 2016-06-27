@@ -17,7 +17,8 @@ class Main {
         println('Application started')
 
         GrizzlyHttpServerFactory.createHttpServer(
-                "http://localhost:8081".toURI(),
+                // TODO ifconfig ip con wlan0
+                "http://141.45.206.103:8081".toURI(),
                 new ResourceConfig(RegisterController.class, LoginController.class, LogoutController.class, OnlineUserController.class));
 
         synchronized (this) {
