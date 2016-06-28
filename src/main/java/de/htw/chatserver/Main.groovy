@@ -16,8 +16,11 @@ class Main {
     static void main(String[] args) {
         println('Application started')
 
+
+
+        String uri = "http://localhost:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8081") + "/"
         GrizzlyHttpServerFactory.createHttpServer(
-                "http://localhost:8081".toURI(),
+                uri.toURI(),
                 new ResourceConfig(RegisterController.class, LoginController.class, LogoutController.class, OnlineUserController.class));
 
         synchronized (this) {
