@@ -18,14 +18,9 @@ class Main {
 
 
 
-        String uri = "http://localhost:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8081") + "/"
-        GrizzlyHttpServerFactory.createHttpServer(
-<<<<<<< HEAD
-                // TODO ifconfig ip con wlan0
-                "http://141.45.206.103:8081".toURI(),
-=======
+        String uri = "http://192.168.178.26:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8081") + "/"
+        GrizzlyHttpServerFactory.createHttpServer(// TODO ifconfig ip con wlan0
                 uri.toURI(),
->>>>>>> ad90ed8434cbebf2d01b885e47343ded2898e676
                 new ResourceConfig(RegisterController.class, LoginController.class, LogoutController.class, OnlineUserController.class));
 
         synchronized (this) {

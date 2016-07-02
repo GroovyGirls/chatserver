@@ -5,6 +5,11 @@
         "name": "Anna"
     },
     {
+        "password": "1",
+        "mail": "1",
+        "name": "1"
+    },
+    {
         "password": "12345",
         "mail": "Doe@mail.de",
         "name": "John"
