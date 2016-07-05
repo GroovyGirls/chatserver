@@ -27,7 +27,6 @@ class LogoutController {
     def logout() {
         UserService userService = UserService.getInstance()
         String remoteAddr = request.getRemoteAddr()
-        // TODO ausloggen funktioniert noch nicht
         if (userService.logout(remoteAddr)) {
             return Response
                     .ok()
