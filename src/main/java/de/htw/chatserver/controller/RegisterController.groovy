@@ -16,6 +16,12 @@ import javax.ws.rs.core.Response
 @Path('register')
 class RegisterController {
 
+    /**
+     * Regestrieren eines neuen Nutzers.
+     * @param user Die Daten des Users müssen Emailadresse, Name und Passwort enthalten. Pro Emailadresse kann
+     * nur ein Account angelegt werden.
+     * @return 200 OK bei erfolgreicher Regestrierung, ansonsten 200 OK
+     */
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -23,9 +29,6 @@ class RegisterController {
         println("start post")
         UserService registerService = UserService.getInstance();
         boolean validUser = registerService.register(user);
-        //prüfen, ob mail schon vorhanden, dann ablehnen Antworten mit ErrorCode
-        //sonst benutzer speichern (json-file)
-        //benutzer OK zurückgeben dabei Benutzernamen und Mail zurückgeben
         println(user)
 
         if (validUser) {
@@ -37,6 +40,6 @@ class RegisterController {
                 .status(Response.Status.CONFLICT)
                 .entity(user)
                 .build()
-
+        // TODO auswertbare Fehlermeldung zurückgeben.
     }
 }

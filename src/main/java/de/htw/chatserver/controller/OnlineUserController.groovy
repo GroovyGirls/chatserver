@@ -19,6 +19,10 @@ class OnlineUserController {
 
     UserService userService;
 
+    /**
+     * Dient zum Abruf der eingeloggten User.
+     * @return Eine Map die die Email und die IP-Adresse der eingeloggten User enthält.
+     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     def getOnlineUser() {

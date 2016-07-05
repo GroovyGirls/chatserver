@@ -16,9 +16,7 @@ class Main {
     static void main(String[] args) {
         println('Application started')
 
-
-
-        String uri = "http://192.168.178.26:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8081") + "/"
+        String uri = "http://192.168.178.21:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8081") + "/"
         GrizzlyHttpServerFactory.createHttpServer(// TODO ifconfig ip con wlan0
                 uri.toURI(),
                 new ResourceConfig(RegisterController.class, LoginController.class, LogoutController.class, OnlineUserController.class));

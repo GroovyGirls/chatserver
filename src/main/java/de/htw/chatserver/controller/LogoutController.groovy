@@ -19,6 +19,10 @@ class LogoutController {
     @Context
     org.glassfish.grizzly.http.server.Request request
 
+    /**
+     * Ausloggen des Nutzers.
+     * @return 200 Ok wenn ausloggen erfolgreich, ansosnten 404 NOT_FOUND
+     */
     @POST
     def logout() {
         UserService userService = UserService.getInstance()
@@ -32,7 +36,5 @@ class LogoutController {
                     .status(Response.Status.NOT_FOUND)
                     .build()
         }
-
-
     }
 }
